@@ -69,13 +69,17 @@ let mouseIsNotClicked = true
         if(flipRandomly()) { // trick or treat :)
             pennyImage.src = './assets/images/penny-heads.jpg' // set the source for heads image
             pennyImage.setAttribute('alt', 'Picture of head') // set alt for disability
-              message.textContent = 'Head!'
+              message.textContent = 'Head!' // i would like the label to flip
+              // with the picture in the message status, it will stop once the mouse is clicked
+              // with a "You've got Head!" message
         return true // return 0
 
         } else {
             pennyImage.src = './assets/images/penny-tails.jpg' // set the source for tails image
             pennyImage.setAttribute('alt', 'Picture of tails') // set alt for disability
-            message.textContent = 'Tail!'
+                message.textContent = 'Tail!' // i would like the label to flip
+                // with the picture in the message status, it will stop once the mouse is clicked
+                // with a "You've got Tails!" message
         return false // return 1
 
         }
@@ -112,6 +116,10 @@ let mouseIsNotClicked = true
 
     }
 
+    // create a new function to call resetScoreBoard() to a different name
+    // set default head image & default values
+    // i just don't like using same name as resetScoreBoard()
+    // until' i can find a better logic
     function setDefault() {
         resetScoreBoard()
     }
@@ -142,6 +150,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // ensure that the event load with preset values
     // i'm not sure if this is a best practice 
     // - but it is the best i can come up with
+    // what this does is to check mouse event and display the You've got text on hit
     if(mouseIsNotClicked && isNotMouseOver) {
         setDefault() // on page load, set to default values
         // when mouseClick and mouseOver not in action
