@@ -57,7 +57,6 @@ let percentOfTails = 0;
 // until now! thanks Mr. Panos
 let isNotMouseOver = true
 let mouseIsNotClicked = true
-let skipUpdatingText = false
 
     // random function to be called again if needed
     function flipRandomly() {
@@ -70,22 +69,20 @@ let skipUpdatingText = false
         if(flipRandomly()) { // trick or treat :)
             pennyImage.src = './assets/images/penny-heads.jpg' // set the source for heads image
             pennyImage.setAttribute('alt', 'Picture of head') // set alt for disability
-                if(!skipUpdatingText) {
-                    message.textContent = 'You\'ve got head!'
-                }
+              message.textContent = 'Head!'
         return true // return 0
+
         } else {
             pennyImage.src = './assets/images/penny-tails.jpg' // set the source for tails image
             pennyImage.setAttribute('alt', 'Picture of tails') // set alt for disability
-                if(!skipUpdatingText) {
-                    message.textContent = 'You\'ve got tail!'
-                }
+            message.textContent = 'Tail!'
         return false // return 1
+
         }
            
     }
 
-    // recurive function to keep folling the coin
+    // recursive function to keep folling the coin
     function rollingPenny() {
         setInterval(setTimeout(function() {
                 // keeps flipping & rolling if mouse is not click
@@ -115,6 +112,10 @@ let skipUpdatingText = false
 
     }
 
+    function setDefault() {
+        resetScoreBoard()
+    }
+
     // Create a function to set score board default values
     function resetScoreBoard() {
         numberOfHeads = 0;
@@ -142,7 +143,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // i'm not sure if this is a best practice 
     // - but it is the best i can come up with
     if(mouseIsNotClicked && isNotMouseOver) {
-        resetScoreBoard() // on page load, set to default values
+        setDefault() // on page load, set to default values
         // when mouseClick and mouseOver not in action
 
         // Set listener for "Flip the Penny!" button
@@ -152,9 +153,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
             if(flipTheCoin()) {
                 numberOfHeads++ // count number or Heads being clicked
+                message.textContent = 'You\'ve got head!'
             } else {
                 numberOfTails++ // count number or Tails being clicked
+                message.textContent = 'You\'ve got tail!'
             }
+
             mouseIsNotClicked=false // if mouse is clicked
             // update the score to each of the clicking
             updateScoreBoard()
